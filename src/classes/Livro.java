@@ -5,12 +5,14 @@ import enums.Status;
 import interfaces.Imprestavel;
 
 public class Livro implements Imprestavel {
-    private static int contador = 0;
+    // Id gerado automaticamente
+    private static int contador = 1;
     private int id;
     private String titulo;
     private String autor;
     private Status status;
 
+    // Construtor cadastrando as principais informações e atualizando os status para disponivel
     public Livro(String titulo, String autor) {
         this.id = ++contador;
         this.titulo = titulo;
@@ -18,6 +20,7 @@ public class Livro implements Imprestavel {
         this.status = Status.DISPONIVEL;
     }
 
+    // Getters e Setters
     public int getId() {
         return id;
     }
@@ -47,25 +50,37 @@ public class Livro implements Imprestavel {
     }
 
     // Métodos implementados da interface
+
+    // Função para atualizar o status do livro como emprestado
     @Override
-    public boolean emprestar(Usuario u) {
+    public String emprestar(Usuario u) {
      if (status == Status.DISPONIVEL) {
          this.status = Status.EMPRESTADO;
-         System.out.println("O livro "+this.titulo+" foi emprestado com sucesso!!!");
-         return true;
+         return "Livro emprestado com sucesso!!!";
      } else {
-         System.out.println("Não foi possivel devolver o livro "+this.titulo+" pois ele já está emprestado!!!");
-         return false;
+         return "Livro já está emprestado!!!";
      }
     }
 
+    // Função para atualizar o status do livro como devolvido
     @Override
-    public void devolver() {
+    public String devolver() {
         if (status == Status.EMPRESTADO) {
             this.status = Status.DISPONIVEL;
-            System.out.println("O livro "+this.titulo+" foi devolvido com sucesso!!!");
+            return "Livro devolvido com sucesso!!!";
         } else {
-            System.out.println("Não foi possivel devolver o livro "+this.titulo+" pois ele já está disponivel!!!");
+            return "O livro já esta disponivel!!";
         }
+    }
+
+    // toString para mostrar informações
+    @Override
+    public String toString() {
+        return "Livro{" +
+                "id=" + id +
+                ", titulo='" + titulo + '\'' +
+                ", autor='" + autor + '\'' +
+                ", status=" + status +
+                '}';
     }
 }

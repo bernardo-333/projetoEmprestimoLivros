@@ -2,7 +2,8 @@ package interfaces;
 
 import abstracts.Usuario;
 
+// Interface obrigando a um produto emprestar e devolver
 public interface Imprestavel {
-    boolean emprestar(Usuario u);
-    void devolver();
+    String emprestar(Usuario u);
+    String devolver();
 }

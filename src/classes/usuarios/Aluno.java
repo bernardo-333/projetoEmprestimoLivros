@@ -1,4 +1,4 @@
-package classes;
+package classes.usuarios;
 
 import abstracts.Usuario;
 
@@ -9,8 +9,10 @@ public class Aluno extends Usuario {
         super(nome, email);
     }
 
+    // Metodo abstrato assinado
     @Override
     public int getLimiteEmprestimos() {
         return LimiteEmprestimos;
     }
+
 }

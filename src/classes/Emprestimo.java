@@ -9,15 +9,18 @@ public class Emprestimo {
     private Livro livroEmprestado;
     private Usuario usuarioResponsavel;
     private LocalDate dataEmprestada;
-    private LocalDate dataDevolucao;
+    private LocalDate dataPrevistaDevolucao;
+    private LocalDate dataDevolvida;
 
-    public Emprestimo(Livro livroEmprestado, Usuario usuarioResponsavel) {
+    // Construtor inicializando as informações principais e registrando o emprestimo
+    public Emprestimo(Livro livroEmprestado, Usuario usuarioResponsavel, int dataPrevistaDevolucao) {
         this.livroEmprestado = livroEmprestado;
         this.usuarioResponsavel = usuarioResponsavel;
         this.dataEmprestada = LocalDate.now();
-        this.dataDevolucao = dataEmprestada.plusDays(7);
+        this.dataPrevistaDevolucao = dataEmprestada.plusDays(dataPrevistaDevolucao);
     }
 
+    // Getters e Setters
     public Livro getLivroEmprestado() {
         return livroEmprestado;
     }
@@ -42,22 +45,78 @@ public class Emprestimo {
         this.dataEmprestada = dataEmprestada;
     }
 
-    public LocalDate getDataDevolucao() {
-        return dataDevolucao;
+    public LocalDate getDataPrevistaDevolucao() {
+        return dataPrevistaDevolucao;
     }
 
-    public void setDataDevolucao(LocalDate dataDevolucao) {
-        this.dataDevolucao = dataDevolucao;
+    public void setDataPrevistaDevolucao(LocalDate dataPrevistaDevolucao) {
+        this.dataPrevistaDevolucao = dataPrevistaDevolucao;
     }
 
-//    public void registrarDevolucao()
+    public LocalDate getDataDevolvida() {
+        return dataDevolvida;
+    }
 
+    public void setDataDevolvida(LocalDate dataDevolvida) {
+        this.dataDevolvida = dataDevolvida;
+    }
 
+    // Função no qual registra a devolução e a data
+    public String registrarDevolucao() {
+        if (dataDevolvida == null) {
+            dataDevolvida = LocalDate.now();
+            return "Devolução registrada com sucesso!!";
+        } else {
+            return "Este empréstimo já foi devolvido!!!";
+        }
+    }
 
-//    public boolean isAtivo() {
-//        if (livroEmprestado.getStatus() == Status.DISPONIVEL) {
-//            System.out.println("O livro "++"");
-//
-//        }
-//    }
+    // Verifica se o emprestimo está ativo
+    public String isAtivo() {
+        if (dataDevolvida == null) {
+            return "Emprestimo está ativo";
+        } else {
+            return "Emprestimo não está ativo";
+        }
+    }
+
+    // Verifica se o emprestimo está atrasado, entregue ou nao entregue
+    public String isAtrasado() {
+        if (dataDevolvida == null) {
+            if (LocalDate.now().isAfter(dataPrevistaDevolucao)) {
+                return "Está atrasado!!";
+            } else {
+                return "Não está atrasado";
+            }
+        } else {
+            if (dataDevolvida.isAfter(dataPrevistaDevolucao)) {
+                return "Está atrasado!!";
+            } else {
+                return "Não está atrasado";
+            }
+        }
+    }
+
+    // Calcula os dias de atraso, entregue ou não entregue
+    public int getDiasAtraso() {
+        if (dataDevolvida != null && dataDevolvida.isAfter(dataPrevistaDevolucao)) {
+            return (int) (dataDevolvida.toEpochDay() - dataPrevistaDevolucao.toEpochDay());
+        } else if (dataDevolvida == null && LocalDate.now().isAfter(dataPrevistaDevolucao)) {
+            return (int) (LocalDate.now().toEpochDay() - dataPrevistaDevolucao.toEpochDay());
+        } else {
+            return 0;
+        }
+    }
+
+    // toString para mostrar informações
+    @Override
+    public String toString() {
+        return "Emprestimo{" +
+                "livroEmprestado=" + livroEmprestado +
+                ", usuarioResponsavel=" + usuarioResponsavel +
+                ", dataEmprestada=" + dataEmprestada +
+                ", dataPrevistaDevolucao=" + dataPrevistaDevolucao +
+                ", dataDevolvida=" + dataDevolvida +
+                '}';
+    }
 }

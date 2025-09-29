@@ -1,7 +1,8 @@
 package abstracts;
 
 public abstract class Usuario {
-    private static int contador = 0;
+    // Id gerado automaticamente
+    private static int contador = 1;
     private int id;
     private String nome;
     private String email;
@@ -12,6 +13,16 @@ public abstract class Usuario {
         this.email = email;
     }
 
+    // Metodo obrigatorio para as subclasses
     protected abstract int getLimiteEmprestimos();
 
+    // toString para mostrar informações
+    @Override
+    public String toString() {
+        return "Usuario{" +
+                "id=" + id +
+                ", nome='" + nome + '\'' +
+                ", email='" + email + '\'' +
+                '}';
+    }
 }
