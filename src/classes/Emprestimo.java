@@ -6,6 +6,9 @@ import enums.Status;
 import java.time.LocalDate;
 
 public class Emprestimo {
+    // Id gerado automaticamente
+    private static int contador = 1;
+    private int id;
     private Livro livroEmprestado;
     private Usuario usuarioResponsavel;
     private LocalDate dataEmprestada;
@@ -14,6 +17,7 @@ public class Emprestimo {
 
     // Construtor inicializando as informações principais e registrando o emprestimo
     public Emprestimo(Livro livroEmprestado, Usuario usuarioResponsavel, int dataPrevistaDevolucao) {
+        this.id = ++contador;
         this.livroEmprestado = livroEmprestado;
         this.usuarioResponsavel = usuarioResponsavel;
         this.dataEmprestada = LocalDate.now();
@@ -21,28 +25,20 @@ public class Emprestimo {
     }
 
     // Getters e Setters
-    public Livro getLivroEmprestado() {
-        return livroEmprestado;
+    public int getId() {
+        return id;
     }
 
-    public void setLivroEmprestado(Livro livroEmprestado) {
-        this.livroEmprestado = livroEmprestado;
+    public Livro getLivroEmprestado() {
+        return livroEmprestado;
     }
 
     public Usuario getUsuarioResponsavel() {
         return usuarioResponsavel;
     }
 
-    public void setUsuarioResponsavel(Usuario usuarioResponsavel) {
-        this.usuarioResponsavel = usuarioResponsavel;
-    }
-
     public LocalDate getDataEmprestada() {
         return dataEmprestada;
-    }
-
-    public void setDataEmprestada(LocalDate dataEmprestada) {
-        this.dataEmprestada = dataEmprestada;
     }
 
     public LocalDate getDataPrevistaDevolucao() {
@@ -112,7 +108,8 @@ public class Emprestimo {
     @Override
     public String toString() {
         return "Emprestimo{" +
-                "livroEmprestado=" + livroEmprestado +
+                "id=" + id +
+                ", livroEmprestado=" + livroEmprestado +
                 ", usuarioResponsavel=" + usuarioResponsavel +
                 ", dataEmprestada=" + dataEmprestada +
                 ", dataPrevistaDevolucao=" + dataPrevistaDevolucao +
