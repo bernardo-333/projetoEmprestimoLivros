@@ -14,7 +14,7 @@ public abstract class Usuario {
     }
 
     // Metodo obrigatorio para as subclasses
-    protected abstract int getLimiteEmprestimos();
+    public abstract int getLimiteEmprestimos();
 
     // toString para mostrar informações
     @Override

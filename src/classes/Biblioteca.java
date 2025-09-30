@@ -60,38 +60,53 @@ public class Biblioteca {
                 emprestimosAtivos++;
             }
         }
-        // Verifica se atingiu o limite destinado ao aluno e ao professor
-//        if (usuario instanceof Aluno) {
-//            Aluno aluno = (Aluno) usuario;
-//            if (emprestimosAtivos >= aluno.getLimiteEmprestimos()) {
-//                return "Aluno atingiu o limite de empréstimos ativos.";
-//            }
-//        } else if (usuario instanceof Professor) {
-//            Professor professor = (Professor) usuario;
-//            if (emprestimosAtivos >= professor.getLimiteEmprestimos()) {
-//                return "Professor atingiu o limite de empréstimos ativos.";
-//            }
-//        }
-
+        // Verifica se atingiu o limite de emprestimos do usuario
         if (emprestimosAtivos >= usuario.getLimiteEmprestimos()) {
             return "Usuário atingiu o limite de empréstimos ativos.";
         }
 
-
-
-
-
-
-
+        // Por fim se tudo estiver correto ele cadastra o emprestimo
         Emprestimo emprestimo = new Emprestimo(livro, usuario, dataPrevistaDevolucao);
-        if (emprestimo.isAtivo() == false) {
-            livro.emprestar();
-            emprestimos.add(emprestimo);
-            return "Emprestimo realizado com sucesso";
-        } else {
-            return "O emprestimo deste livro ja esta ativo";
-        }
+        livro.emprestar();
+        emprestimos.add(emprestimo);
+        return "Emprestimo realizado com sucesso";
     }
 
+    // Realizar uma devolução buscando pelo Id do emprestimo
+    public String registrarDevolucao(int id_emprestimo) {
+        for (Emprestimo e : emprestimos) {
+            if (e.getId() == id_emprestimo) {
+                e.registrarDevolucao();
+                return "Devolução registrada com sucesso!!!";
+            }
+        }
+        return "Id não encontrado na lista de emprestimos!!";
+    }
 
+    // Métodos para listar os livros separando por disponiveis ou emprestados pelo filtro
+    public String listarLivros(Status statusFiltro){
+        String resultado = "";
+        for (Livro l : livros) {
+            if (statusFiltro == null || l.getStatus() == statusFiltro) {
+                resultado += l + "\n";
+            }
+        }
+        if (livros.isEmpty()) {
+            return "Nenhum livro cadastrado!!!";
+        }
+        return resultado;
+    }
+
+    // Metodos para listar os emprestimos
+    public String listarEmprestimos() {
+        if (emprestimos.isEmpty()) {
+            return "Nenhum emprestimo cadastrado!!!";
+        }
+
+        String resultado = "";
+        for (Emprestimo e : emprestimos) {
+            resultado += e + "\n";
+        }
+        return resultado;
+    }
 }
