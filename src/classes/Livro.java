@@ -41,7 +41,7 @@ public class Livro implements Imprestavel {
 
     // Função para atualizar o status do livro como emprestado
     @Override
-    public String emprestar(Usuario u) {
+    public String emprestar() {
      if (status == Status.DISPONIVEL) {
          this.status = Status.EMPRESTADO;
          return "Livro emprestado com sucesso!!!";

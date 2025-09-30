@@ -68,27 +68,27 @@ public class Emprestimo {
     }
 
     // Verifica se o emprestimo está ativo
-    public String isAtivo() {
+    public boolean isAtivo() {
         if (dataDevolvida == null) {
-            return "Emprestimo está ativo";
+            return true;
         } else {
-            return "Emprestimo não está ativo";
+            return false;
         }
     }
 
     // Verifica se o emprestimo está atrasado, entregue ou nao entregue
-    public String isAtrasado() {
+    public boolean isAtrasado() {
         if (dataDevolvida == null) {
             if (LocalDate.now().isAfter(dataPrevistaDevolucao)) {
-                return "Está atrasado!!";
+                return true;
             } else {
-                return "Não está atrasado";
+                return false;
             }
         } else {
             if (dataDevolvida.isAfter(dataPrevistaDevolucao)) {
-                return "Está atrasado!!";
+                return true;
             } else {
-                return "Não está atrasado";
+                return false;
             }
         }
     }
