@@ -13,6 +13,18 @@ public abstract class Usuario {
         this.email = email;
     }
 
+    public int getId() {
+        return id;
+    }
+
+    public String getNome() {
+        return nome;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
     // Metodo obrigatorio para as subclasses
     public abstract int getLimiteEmprestimos();
 

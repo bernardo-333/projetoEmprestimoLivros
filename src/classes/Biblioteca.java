@@ -109,4 +109,50 @@ public class Biblioteca {
         }
         return resultado;
     }
+
+    // Métodos para buscar o livro por id e titulo
+    public String buscarLivro(int id) {
+        for (Livro l : livros) {
+            if (l.getId() == id) {
+                return l.toString();
+            }
+        }
+        return "Livro não encontrado na biblioteca!!";
+    }
+    // Sobrecarga
+    public String buscarLivro(String titulo) {
+        for (Livro l : livros) {
+            if (l.getTitulo().equalsIgnoreCase(titulo)) {
+                return l.toString();
+            }
+        }
+        return "Livro não encontrado na biblioteca!!";
+    }
+
+    // Métodos para buscar usuario por id, email e nome
+    public String buscarUsuario(int id) {
+        for (Usuario u : usuarios) {
+            if (u.getId() == id) {
+                return u.toString();
+            }
+        }
+        return "Usuario não encontrado!!!";
+    }
+    // Sobrecarga no qual verifica se a busca é um nome ou um email
+    public String buscarUsuario(String busca) {
+        if (busca.contains("@")) {
+            for (Usuario u : usuarios) {
+                if (u.getEmail().equalsIgnoreCase(busca)) {
+                    return u.toString();
+                }
+            }
+        } else {
+            for (Usuario u : usuarios) {
+                if (u.getNome().equalsIgnoreCase(busca)) {
+                    return u.toString();
+                }
+            }
+        }
+        return "Usuario não encontrado!!!";
+    }
 }
