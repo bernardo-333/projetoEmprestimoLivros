@@ -7,7 +7,7 @@ import java.time.LocalDate;
 
 public class Emprestimo {
     // Id gerado automaticamente
-    private static int contador = 1;
+    private static int contador = 0;
     private int id;
     private Livro livroEmprestado;
     private Usuario usuarioResponsavel;

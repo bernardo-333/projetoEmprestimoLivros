@@ -6,7 +6,7 @@ import interfaces.Imprestavel;
 
 public class Livro implements Imprestavel {
     // Id gerado automaticamente
-    private static int contador = 1;
+    private static int contador = 0;
     private int id;
     private String titulo;
     private String autor;

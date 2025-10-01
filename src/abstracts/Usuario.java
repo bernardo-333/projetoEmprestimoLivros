@@ -2,7 +2,7 @@ package abstracts;
 
 public abstract class Usuario {
     // Id gerado automaticamente
-    private static int contador = 1;
+    private static int contador = 0;
     private int id;
     private String nome;
     private String email;
@@ -24,6 +24,8 @@ public abstract class Usuario {
     public String getEmail() {
         return email;
     }
+
+
 
     // Metodo obrigatorio para as subclasses
     public abstract int getLimiteEmprestimos();
