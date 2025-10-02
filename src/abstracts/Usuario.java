@@ -1,6 +1,9 @@
 package abstracts;
 
+// Abstração
 public abstract class Usuario {
+    // Encapsulamento
+
     // Id gerado automaticamente
     private static int contador = 0;
     private int id;
@@ -17,6 +20,7 @@ public abstract class Usuario {
         return id;
     }
 
+    // Encapsulamento
     public String getNome() {
         return nome;
     }
@@ -26,7 +30,7 @@ public abstract class Usuario {
     }
 
 
-
+    // Abstração
     // Metodo obrigatorio para as subclasses
     public abstract int getLimiteEmprestimos();
 

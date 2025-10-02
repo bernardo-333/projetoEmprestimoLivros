@@ -2,6 +2,7 @@ package classes.usuarios;
 
 import abstracts.Usuario;
 
+// Herança
 public class Professor extends Usuario {
     private int LimiteEmprestimos = 5;
 

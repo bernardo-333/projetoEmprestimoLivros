@@ -4,6 +4,7 @@ import abstracts.Usuario;
 import enums.Status;
 import interfaces.Imprestavel;
 
+// Interface
 public class Livro implements Imprestavel {
     // Id gerado automaticamente
     private static int contador = 0;

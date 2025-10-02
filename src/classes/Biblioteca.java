@@ -9,6 +9,7 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 
 public class Biblioteca {
+    // Polimorfismo
     private ArrayList<Livro> livros;
     private ArrayList<Usuario> usuarios;
     private ArrayList<Emprestimo> emprestimos;
@@ -37,11 +38,13 @@ public class Biblioteca {
         return "Livro cadastrado com sucesso!!!";
     }
 
+    // Polimorfismo
     public String cadastrarUsuario(Usuario usuario) {
         usuarios.add(usuario);
         return "Usuario cadastrado com sucesso!!!";
     }
 
+    // Polimorfismo
     // Realizar um emprestimo
     public String realizarEmprestimo(Livro livro, Usuario usuario, int dataPrevistaDevolucao) {
         // Aqui dentro temos 3 verificações
